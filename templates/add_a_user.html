@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}BLOGLY USERS{% endblock %}
+{% block content %}
+
+  <div class="w3-card-4">
+    <div class="w3-container w3-green">
+      <h3>Create User</h3>
+    </div>
+    <form class="w3-container" action="/create" method="post">
+      <p>
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="First Name">
+      </p>
+      <p>
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Last Name">
+      </p>
+      <p>
+        <label>Image URL</label>
+        <input type="text" name="img_url" placeholder="add img *not required">
+      </p>
+      <button class="w3-ripple w3-round w3-right w3-green">create</button>
+    </form>
+
+  </div>
+
+
+{% endblock %}
