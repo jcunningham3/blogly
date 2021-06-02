@@ -8,6 +8,7 @@ def connect_db(app):
     db.init_app(app)
 
 class Users(db.Model):
+    # users table
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -16,6 +17,7 @@ class Users(db.Model):
     img_url = db.Column(db.Text, nullable=True, default='/static/img/blank_avatar.png')
 
 class Posts(db.Model):
+    # posts table
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -25,3 +27,18 @@ class Posts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     dept = db.relationship('Users', backref="posts")
+
+class Tags(db.Model):
+    # tags table
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
+
+    posts = db.relationship('Posts', secondary="posttags", cascade="all, delete", backref="tags",)
+
+class PostTags(db.Model):
+    __tablename__ = 'posttags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)

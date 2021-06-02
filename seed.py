@@ -1,5 +1,5 @@
 from app import db
-from models import Users, Posts
+from models import Users, Posts, Tags, PostTags
 
 #clear and create our tables
 db.drop_all()
