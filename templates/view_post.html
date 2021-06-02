@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}POST{% endblock %}
+{% block content %}
+<hr>
+<div class="w3-card-4" style="width:60%;">
+  <h3 class="w3-left">{{ post.title }}</h3>
+  <h5 class="w3-left">{{ post.content }}</h5>
+  <div class="w3-tiny"></div>
+</div>
+
+<div class="w3-bottom">
+  <div class="w3-container w3-margin w3-left">
+    <a href="/users/profile/{{post.user_id}}"><div class="w3-btn w3-ripple w3-border w3-round">back</div></a>
+  </div>
+
+  <div class="w3-container w3-margin w3-right">
+    <div class="w3-btn w3-ripple w3-border w3-round w3-text-green" onclick="document.getElementById('id01').style.display='block'">edit</div>
+    <div class="w3-btn w3-ripple w3-border w3-round w3-text-red" onclick="document.getElementById('id02').style.display='block'">delete</div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<!-- edit post modal -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <div class="w3-green w3-padding">
+        <h3>Edit {{post.title}} Post?</h3>
+      </div>
+      <form class="w3-container" action="/edit/post/{{post.id}}" method="post">
+        <p>
+          <label>Title</label>
+          <input type="text" name="title" value="{{post.title}}">
+        </p>
+        <p>
+          <label>Content</label>
+          <input type="text" name="content" value="{{post.content}}">
+        </p>
+        <button class="w3-ripple w3-round w3-right w3-green">submit changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- delete post modal -->
+<div id="id02" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <div class="w3-red w3-padding">
+        <h3>Delete {{post.title}} Post?</h3>
+      </div>
+      <form class="w3-container" action="/delete/post/{{post.id}}" method="post">
+        <button class="w3-ripple w3-round w3-right w3-red w3-padding w3-margin">delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

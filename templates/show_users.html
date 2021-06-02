@@ -1,22 +1,32 @@
 {% extends 'base.html' %}
 {% block title %}BLOGLY USERS{% endblock %}
 {% block content %}
-  <h3>current blogly users</h3>
+<style>
+  img {
+    width: 30%;
+  }
+  .w3-card-4 {
+    width: 30%;
+    height: auto;
+  }
+</style>
 
-  {% for user in users %}
-  <a href="/users/profile/{{user.id}}">
-    <div class="w3-card-4 w3-btn w3-ripple w3-padding w3-mobile">
-      <img src="{{ user.img_url }}" alt="">
-      <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-    </div>
-  </a>
-  {% endfor %}
+<h3>current blogly users</h3>
 
-  <div class="w3-bottom w3-padding-16">
-    <a href="/users/add">
-      <div class="w3-right w3-btn w3-ripple w3-round w3-border w3-xxlarge">+</div>
-    </a>
+{% for user in users %}
+<a href="/users/profile/{{user.id}}">
+  <div class="w3-card-4 w3-btn w3-ripple w3-padding w3-mobile">
+    <img src="{{ user.img_url }}" alt="">
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
   </div>
+</a>
+{% endfor %}
+
+<div class="w3-bottom w3-padding-16">
+  <a href="/users/add">
+    <div class="w3-right w3-btn w3-ripple w3-round w3-border w3-xxlarge">+</div>
+  </a>
+</div>
 
 
 {% endblock %}

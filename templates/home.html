@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}BLOGLY HOME{% endblock %}
 {% block content %}
+
   <h3>welcome to blogly</h3>
-  <h5>the home of your whack blog</h5>
+  <h5>recent posts</h5>
+
+  {% for post in posts %}
+  <div class="w3-border w3-round w3-padding">
+    <a href="/post/view/{{post.id}}"><h3 class="w3-btn w3-ripple w3-mobile">{{post.title}}</h3></a>
+    {% for user in users %}
+    {% if post.user_id == user.id %}
+    <a href="/users/profile/{{user.id}}"><div class="w3-btn w3-ripple w3-mobile w3-tiny">by {{user.first_name}} {{user.last_name}}</div></a>
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+
 {% endblock %}
